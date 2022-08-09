@@ -2,7 +2,7 @@
 require_once ('./Artigo.php');
 require_once('./config.php');
 
-$artigo = new Artigo();
+$artigo = new Artigo($mysql);
 $artigos = $artigo -> exibirTodos();
 ?>
 <!DOCTYPE html>
