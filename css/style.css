@@ -1,10 +1,10 @@
-body {
+.bodyAlura {
   background-color: #4B7399;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
 }
 
-#container {
+#containerAlura {
   width: 75%;
   margin: 0 auto;
   background-color: #FFF;
@@ -12,9 +12,15 @@ body {
   border: solid 1px black;
   margin-top: 20px;
 }
-
-a {
+.titleA{
+  font-size: 28px;
+  font-weight: bold;
+}
+.link {
   text-decoration: none;
+  font-size: 25px;
+  font-weight: bold;
+  color: #183b5b;
 }
 
 ul {

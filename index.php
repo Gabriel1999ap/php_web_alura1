@@ -11,7 +11,7 @@ para acessar essa classe e a função criada é necessário serguir os procedime
 // Fazer o link com o código feito na classe Artigos, utilixando o require.
 
 
-require_once ('./Artigo.php');
+require_once ('./src/Artigo.php');
 
 // Instanciando a conexão, feita no arquivo config.php
 require_once('./config.php');
@@ -30,15 +30,22 @@ $artigos = $artigo -> exibirTodos();
 <head>
     <title>Meu Blog</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
 </head>
-<body>
-    <div id="container">
-        <h1>Meu Blog</h1>
+
+<body class="bodyAlura">
+    <div id="containerAlura">
+        <nav>
+            <a class="btn btn-success" href="./admin/index.html">Admin</a>
+        </nav>
+        <center><h1 class="titleA">Meu Blog</h1></center>
+        
         <?php 
             foreach($artigos as $artigo) :?>
         <h2>
-            <a href="<?php echo $artigo['link'] ?>">
+            <a class="link" href="artigo.php?id=<?php echo $artigo['id']; ?>">
                 <?php 
                     echo $artigo['titulo']
                 ?>

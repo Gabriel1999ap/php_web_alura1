@@ -1,32 +1,36 @@
 <?php 
 
-/* A finalidade desse arquivo que abriga a classe Artigos é de escrever o código PHP pe irá automatizar
-a donstrução e edição de posts na pagina do blog e fazer a conexão com banco de dados
-*/
+require_once   ('config.php');
+require_once ('./src/Artigo.php');
 
-class Artigo
-{
-    // Inicia a variável $mysql
-    private $mysql;   
-
-    // Cria a função construtora
-    public function __construct(mysqli $mysql)
-    {
-        $this-> mysql = $mysql;
-    }
-
-    public function exibirTodos(): array
-    {
-
-    // Realiza consulta no banco de dados
-     $resultado =   $this-> mysql->query('SELECT id,titulo,conteudo FROM artigos');
-     
-     // O método fetch_all retorna um array associativo com valor inteiro
-     $artigos  = $resultado -> fetch_all(MYSQLI_ASSOC);
-
-
-        return $artigos;
-    }
-}
+$obj_artigo = new Artigo($mysql);
+$artigo =  $obj_artigo->encontrarPorId($_GET['id']);
 
 ?>
+
+<!DOCTYPE html> 
+<html lang="pt-br">
+
+<head>
+    <title>Meu Blog</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+</head>
+
+<body class="bodyAlura">
+    <div id="containerAlura">
+        <h1 class="titleA">
+            <?php echo $artigo['titulo'] ?>
+        </h1>
+        <p>
+        <?php echo $artigo['conteudo'] ?>
+        </p>
+        <div>
+            <a class="btn btn-secondary" href="index.php">Voltar</a>
+        </div>
+    </div>
+</body>
+
+</html>
