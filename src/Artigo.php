@@ -15,6 +15,16 @@ class Artigo
         $this-> mysql = $mysql;
     }
 
+    public function adicionarArtigo(string $titulo, string $conteudo): void
+    {
+      $insereArtigo =  $this->mysql->prepare('INSERT INTO artigos (titulo,conteudo) VALUES (?,?);');
+      //ss siginigica que vamos passar dois valors no INSERT INTO em forma de string
+      //O método bind_param vincula o valor recebido pela variável $id para o ponto de interrogação da cláusula WHERE.
+      $insereArtigo->bind_param('ss',$titulo, $conteudo);
+      $insereArtigo ->execute();
+
+    }
+
     public function exibirTodos(): array
     {
 
@@ -31,14 +41,25 @@ class Artigo
     // Realiza consulta no banco de dados pelo Id
     public function encontrarPorId(string $id): array
     {
-
-        
+ 
       $selecionaArtigo = $this->mysql->prepare("SELECT id,titulo,conteudo FROM artigos WHERE id = ? ") ;
+      //O método bind_param vincula o valor recebido pela variável $id para o ponto de interrogação da cláusula WHERE.
       $selecionaArtigo->bind_param('s',$id);
       $selecionaArtigo->execute();
       $artigo = $selecionaArtigo->get_result()->fetch_assoc();
       return $artigo;
      
+    }
+
+    //Deletando um artigo 
+
+    public function remover(string $id): void
+    {
+
+      $removerArtigo =  $this->mysql->prepare('DELETE FROM artigos WHERE id = ?');
+      $removerArtigo->bind_param('s', $id);
+      $removerArtigo ->execute();
+      
     }
 
 }
