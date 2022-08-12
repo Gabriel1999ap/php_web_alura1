@@ -1,3 +1,22 @@
+<?php 
+
+require_once ('../config.php');
+require_once ('../src/Artigo.php');
+require_once('../src/redireciona.php');
+
+if($_SERVER['REQUEST_METHOD'] === 'POST')
+{
+    $artigo = new Artigo($mysql);
+    $artigo->editar($_POST['id'],$_POST['titulo'],$_POST['conteudo']);
+
+    redireciona('/blog/admin/index.php');
+}
+
+$artigo = new Artigo($mysql);
+$art = $artigo->encontrarPorId($_GET['id']);
+
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -14,17 +33,17 @@
         <form action="editar-artigo.html" method="post">
             <p>
                 <label for="titulo">Digite o novo título do artigo</label>
-                <input type="text" class="form-control" id="titulo" name="titulo" 
+                <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo $art['titulo']?>"
                 placeholder="Titulo" >
             </p>
             <p>
                 <label for="">Digite o novo conteúdo do artigo</label>
-                <textarea class="form-control" id="conteudo" name="conteudo" 
+                <textarea class="form-control" id="titulo" name="conteudo" 
                 placeholder="Digite o conteudo do artigo" 
-                ></textarea>
+                ><?php echo $art['conteudo']?></textarea>
             </p>
             <p>
-                <input type="hidden" name="id" value="" />
+                <input type="hidden" name="id" value="<?php echo $art['id']; ?>" />
             </p>
             <br>
             <nav>
