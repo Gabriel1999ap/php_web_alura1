@@ -56,7 +56,8 @@ $artigos = $artigo -> exibirTodos();
             </a>
         </h2>
         <p>
-            <?php echo $artigo['conteudo'] ?> 
+            <!-- nl2br comando para pular linha -->
+            <?php echo nl2br($artigo['conteudo']) ?> 
         </p>
         <?php 
            endforeach

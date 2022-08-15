@@ -30,7 +30,7 @@ $art = $artigo->encontrarPorId($_GET['id']);
 <body class="bodyAlura">
     <div id="containerAlura" class="form-group has-error">
         <h1 class="titleA">Editar Artigo</h1>
-        <form action="editar-artigo.html" method="post">
+        <form action="editar-artigo.php" method="post">
             <p>
                 <label for="titulo">Digite o novo título do artigo</label>
                 <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo $art['titulo']?>"
@@ -47,7 +47,7 @@ $art = $artigo->encontrarPorId($_GET['id']);
             </p>
             <br>
             <nav>
-                <a class="btn btn-success" href="./adicionar-artigo.php">Editar Artigo</a>
+                <button class="btn btn-success">Editar Artigo</button>
                 <a class="btn btn-secondary" href="../admin/index.php">Voltar</a>
             </nav>
         </form>
